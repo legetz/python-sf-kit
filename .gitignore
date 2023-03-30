@@ -131,3 +131,9 @@ dmypy.json
 
 # Ignore export folder
 export
+
+# Ignore database folder
+db
+
+# Ignore customer specific scripts
+src/customer-*
