@@ -35,7 +35,7 @@ def append_file_with_list(filename, item_list):
 
 def main():
     object_name = 'Account'
-    column_list = ['Id','CreatedDate','CreatedBy.Name','LastModifiedDate','LastModifiedBy.Name']
+    column_list = ['Id','Name','CreatedDate','CreatedBy.Name','LastModifiedDate','LastModifiedBy.Name']
     soql_limit = 10000000
 
     now = datetime.datetime.now()

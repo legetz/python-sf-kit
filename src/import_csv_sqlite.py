@@ -15,6 +15,7 @@ def main():
     table_create = f'''
     CREATE TABLE {table_name} (
         "Id"  VARCHAR(18) PRIMARY KEY,
+        "Name" TEXT,
         "CreatedDate" TEXT,
         "CreatedByName" TEXT,
         "LastModifiedDate" TEXT,
