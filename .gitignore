@@ -135,5 +135,6 @@ export
 # Ignore database folder
 db
 
-# Ignore customer specific scripts
+# Ignore customer specific scripts/notes
 src/customer-*
+notes
