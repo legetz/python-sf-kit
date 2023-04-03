@@ -1,6 +1,6 @@
-import sqlite3
 import os
 import subprocess
+from config.database import connect_db
 
 def main():
     database_folder = 'db'
@@ -10,7 +10,7 @@ def main():
         print(f"Created directory: {database_folder}")
 
     database_path = f"{database_folder}/default.db"
-    csv_path = "export/2023-03-30/account.csv"
+    csv_path = "export/2023-04-03/account.csv"
     table_name = 'account'
     table_create = f'''
     CREATE TABLE {table_name} (
@@ -24,7 +24,7 @@ def main():
     '''
 
     try:
-        conn = sqlite3.connect(database_path)
+        conn = connect_db(database_path)
         cursor = conn.cursor()
 
         print(f'Dropping table {table_name}')

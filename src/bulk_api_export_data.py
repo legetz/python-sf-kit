@@ -2,7 +2,7 @@ import csv
 import os
 import datetime
 from dotenv import load_dotenv
-from salesforce_connection import SalesforceConnection
+from utils.salesforce_connection import SalesforceConnection
 from simple_salesforce import format_soql
 
 load_dotenv()
