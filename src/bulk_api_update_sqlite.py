@@ -1,21 +1,17 @@
-import sqlite3
-import os
-import datetime
 from dotenv import load_dotenv
-from salesforce_connection import SalesforceConnection
+from utils.salesforce_connection import SalesforceConnection
+from config.database import connect_db
 
 load_dotenv()
 
 def main():
-    database_path = os.environ.get("DB_NAME", 'db/default.db')
     table_name = 'account'
 
     try:
-        print(f'Connecting to database {database_path}')
-        conn = sqlite3.connect(database_path)
+        conn = connect_db()
         cursor = conn.cursor()
 
-        sql_query = f"SELECT Id,Name FROM {table_name} WHERE UpdateSuccess=0"
+        sql_query = f"SELECT Id,Name FROM {table_name} LIMIT 10"
         cursor.execute(sql_query)
         results = cursor.fetchall()
         print(f'Found {len(results)} rows for query {sql_query}')

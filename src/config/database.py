@@ -1,5 +1,5 @@
+import os
 import sqlite3
-from dotenv import load_dotenv
 
 def connect_db(db_path = None):
     database_path = None
