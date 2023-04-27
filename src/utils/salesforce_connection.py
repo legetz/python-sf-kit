@@ -42,3 +42,19 @@ class SalesforceConnection:
                 version=self.version,
             )
         return self.conn
+
+    def get_object_field_info(self, object_name):
+        sf = self.get_conn()
+        field_info = {}
+        desc = getattr(sf, object_name).describe()
+        
+        for fld in desc['fields']:
+            field_info[fld['name']] = {
+                'label': fld['label'],
+                'type': fld['type'],
+                'length': fld['length'],
+                'referenceTo': fld['referenceTo'],
+                'precision': fld['precision'],
+                'digits': fld['digits']
+            }
+        return field_info
