@@ -1,6 +1,10 @@
 import csv
 import os
 import datetime
+from rich import print
+from rich.console import Console
+from rich.table import Table
+
 from dotenv import load_dotenv
 from utils.salesforce_connection import SalesforceConnection
 from simple_salesforce import format_soql
@@ -34,6 +38,11 @@ def append_file_with_list(filename, item_list):
             writer.writerow(csv_items)
 
 def main():
+    table = Table(title="Export summary")
+    table.add_column("Table", style="green", no_wrap=True)
+    table.add_column("CSV file", style="green")
+    table.add_column("Record count", justify="right", style="green")
+
     object_name = 'Account'
     column_list = ['Id','Name','CreatedDate','CreatedBy.Name','LastModifiedDate','LastModifiedBy.Name']
     soql_limit = 10000000
@@ -85,10 +94,15 @@ def main():
             total_line_count += len(csv_item_list)
             print(f"Processed iteration {iteration}, appended {len(csv_item_list)} rows")
         print(f"Exported total of {total_line_count} rows into {filename}")
+        table.add_row(object_name, filename, str(total_line_count))
+
     except Exception as err:
         print('Failed to fetch data')
         print('Exception type: ', type(err))
         print('Exception args: ', err.args)
+
+    console = Console()
+    console.print(table)
     
 if __name__ == '__main__':
     main()
